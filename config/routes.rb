@@ -4,4 +4,9 @@ Rails.application.routes.draw do
   resource :tracks
 
   root to: 'tracks#index'
+
+  namespace :admin do
+    resources :users
+    root to: 'users#index'
+  end
 end

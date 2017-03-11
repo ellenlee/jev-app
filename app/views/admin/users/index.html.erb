@@ -1,0 +1,17 @@
+<h1>成員總表</h1>
+<table class="table table-bordered table-hover">
+  <tr> table-hover
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%=user.name %></td>
+      <td><%=user.email %></td>
+      <td><%=user.role %></td>
+    </tr>
+  <% end %>
+</table>
+
+
