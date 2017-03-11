@@ -1,12 +1,14 @@
-<h1>成員總表</h1>
+<h3>成員總表</h3>
 <table class="table table-bordered table-hover">
-  <tr> table-hover
+  <tr>
+    <th>track</th>
     <th>Name</th>
     <th>Email</th>
     <th>Role</th>
   </tr>
   <% @users.each do |user| %>
     <tr>
+      <td>track</td>
       <td><%=user.name %></td>
       <td><%=user.email %></td>
       <td><%=user.role %></td>
