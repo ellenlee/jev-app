@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   root to: 'tracks#index'
 
   namespace :admin do
+    root 'users#index'
+
     resources :users
-    root to: 'users#index'
+    resources :tracks
+    resources :sections do
+      resources :assignments
+      resources :quizzes
+    end
   end
 end
