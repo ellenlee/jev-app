@@ -18,8 +18,11 @@ student_list = [
   { name: 'Ray', email: "jioherry@gmail.com" }
 ]
 
+Track.create!(name:"web_13")
+
 student_list.each do |student|
-  User.create!( name: student[:name], email: student[:email], password: student[:email] )
+  User.create!( name: student[:name], email: student[:email], password: student[:email], role: 'student', track_id: 1 )
 end
+
 
 

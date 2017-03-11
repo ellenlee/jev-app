@@ -8,7 +8,7 @@
   </tr>
   <% @users.each do |user| %>
     <tr>
-      <td>track</td>
+      <td><%= Track.find(user.track_id).name %></td>
       <td><%=user.name %></td>
       <td><%=user.email %></td>
       <td><%=user.role %></td>
