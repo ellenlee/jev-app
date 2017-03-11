@@ -9,8 +9,13 @@ Rails.application.routes.draw do
     root 'users#index'
 
     resources :users
+<<<<<<< HEAD
     resources :tracks do
       resources :sections
+=======
+    resources :tracks
+    resources :sections do
+>>>>>>> bb05fd8a99376555315a99c0966d110769859c58
       resources :assignments
       resources :quizzes
     end
