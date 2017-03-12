@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     resources :users
     resources :tracks
     resources :sections do
-      resources :assignments
-      resources :quizzes
+      resources :assignments, controller: 'section_assignments'
+      resources :quizzes, controller: 'section_quizzes'
     end
   end
 

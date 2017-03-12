@@ -1,4 +1,5 @@
 class Admin::SectionsController < Admin::AdminController
+  before_action :set_section, only: [:show, :update, :destroy]
 
   def index
     @sections = Section.all
@@ -15,30 +16,32 @@ class Admin::SectionsController < Admin::AdminController
 
     if @section.save
       redirect_to admin_sections_path
-      flash[:notice] = "新增成功！"
+      flash[:notice] = "新增成功"
     else
       render 'admin/sections#index'
     end
   end
 
   def show
-    set_section
+    @assignments = @section.assignments
 
+    if params[:assignment]
+      @assignment = @section.assignments.find(params[:assignment])
+    else
+      @assignment = Assignment.new(duedate: (DateTime.now + 3.days).to_date - 2.hours )
+    end
   end
 
   def update
-    set_section
-
     if @section.update(section_params)
       redirect_to admin_sections_path
-      flash[:notice] = "修改成功！"
+      flash[:notice] = "修改成功"
     else
       render 'admin/sections#index'
     end
   end
 
   def destroy
-    @section = Section.find(params[:id])
     @section.destroy
     redirect_to admin_sections_path
   end
@@ -47,7 +50,7 @@ class Admin::SectionsController < Admin::AdminController
   private
 
   def section_params
-    params.require(:section).permit(:name, :track_id)
+    params.require(:section).permit(:name)
   end
 
   def set_section

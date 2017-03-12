@@ -30,3 +30,11 @@ td, th {
   text-align: center;
   font-size: 10px;
 }
+
+form.form-inline div.control-group { display: inline-block !important; }
+
+form.form-inline .form-control {
+  display: inline-block !important;
+  width: auto !important ;}
+
+form.form-inline div.control-group div.controls { display: inline-block !important;}

@@ -2,22 +2,37 @@
 
 <table class="table table-condensed table-hover table-responsive">
   <tr>
-    <th>assignment</th>
-    <th>duedate</th>
+    <th>#</th>
+    <th>Assignment</th>
+    <th>Deadline</th>
     <th>open</th>
     <th></th>
   </tr>
-  <% @section.assignments.each do |assignment| %>
+  <% @assignments.each do |assignment| %>
     <tr>
+      <td><%= assignment.id %></td>
       <td><%= assignment.name %></td>
+      <td><%= assignment.deadline %></td>
       <td></td>
-      <td></td>
-      <td><%= link_to '編輯' %>｜<%= link_to'刪除' %></td>
+      <td><%= link_to '編輯', admin_section_path(assignment: assignment.id) %>｜<%= link_to'刪除', admin_section_assignment_path(@section, assignment), method: :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<h4>發佈作業</h4>
+<% if params[:assignment].present? %>
+  <h4>編輯作業</h4>
+<% else %>
+  <h4>發佈作業</h4>
+<% end %>
+
+<%= simple_form_for [:admin, @section, @assignment], html: {class: 'form-inline' } do |f| %>
+  <%= f.input :name, label: 'Assignment '  %>
+  <div class="form-group">
+    <%= f.label 'deadline' %>
+    <%= f.datetime_field :duedate, class: 'form-control' %>
+  </div>
+  <%= f.button :submit, class: "btn-sm btn-primary" %>
+<% end %>
 
 
-<h4>編輯作業</h4>
+
