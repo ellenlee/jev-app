@@ -1,5 +1,4 @@
 class Admin::SectionsController < Admin::AdminController
-  before_action :set_track
 
   def index
     @sections = Section.all
@@ -7,7 +6,7 @@ class Admin::SectionsController < Admin::AdminController
     if params[:id]
       set_section
     else
-      @section = @track.sections.new
+      @section = Section.new
     end
   end
 
@@ -15,18 +14,23 @@ class Admin::SectionsController < Admin::AdminController
     @section = Section.new(section_params)
 
     if @section.save
-      redirect_to admin_track_sections_path(@track)
+      redirect_to admin_sections_path
       flash[:notice] = "新增成功！"
     else
       render 'admin/sections#index'
     end
   end
 
+  def show
+    set_section
+
+  end
+
   def update
     set_section
 
     if @section.update(section_params)
-      redirect_to admin_track_sections_path(@track)
+      redirect_to admin_sections_path
       flash[:notice] = "修改成功！"
     else
       render 'admin/sections#index'
@@ -36,7 +40,7 @@ class Admin::SectionsController < Admin::AdminController
   def destroy
     @section = Section.find(params[:id])
     @section.destroy
-    redirect_to admin_track_sections_path(@track)
+    redirect_to admin_sections_path
   end
 
 
@@ -46,11 +50,7 @@ class Admin::SectionsController < Admin::AdminController
     params.require(:section).permit(:name, :track_id)
   end
 
-  def set_track
-    @track = Track.find(params[:track_id])
-  end
-
   def set_section
-    @section = @track.sections.find(params[:id])
+    @section = Section.find(params[:id])
   end
 end

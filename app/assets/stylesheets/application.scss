@@ -16,5 +16,17 @@
 
 body {
   padding: 10px;
-  background-color: #F9F9F9;
+}
+
+body, .table {
+  background-color: #F9F9F9 !important;
+}
+
+.table .section_name {
+  width: 150px;
+}
+
+td, th {
+  text-align: center;
+  font-size: 10px;
 }

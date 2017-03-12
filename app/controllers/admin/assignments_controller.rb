@@ -1,2 +1,3 @@
-class Admin::AssignmentsController < ApplicationController
+class Admin::AssignmentsController < Admin::AdminController
+
 end

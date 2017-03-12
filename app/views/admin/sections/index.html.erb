@@ -1,23 +1,31 @@
 <h3>課程總表</h3>
 
-
-<ul>
-  <% @sections.each do |section| %>
-    <li>
-      <%= section.name %>｜
-      <%= link_to 'edit', admin_track_sections_path(id: section.id), class: "btn btn-xs btn-warning" %>
-      <%= link_to '刪除', admin_track_section_path(@track.id, section), method: :delete, class: "btn btn-xs btn-danger" %>
-    </li>
-  <% end %>
-</ul>
-
 <%= form_for [:admin, @track, @section] do |f| %>
-
   <%= f.hidden_field :track_id %>
-
-  <%= f.label :name, "名稱" %>
+  <%= f.label :name, "課程名稱" %>
   <%= f.text_field :name %>
-
-
   <%= f.submit class: "btn btn-primary btn-sm"  %>
 <% end %>
+<br>
+<table class="table table-condensed table-bordered table-responsive">
+  <tr>
+    <th class="section_name">Section</th>
+    <th>Assignment</th>
+    <th>date</th>
+    <th></th>
+  </tr>
+  <% @sections.each do |section| %>
+    <tr>
+      <td><%= link_to section.name, admin_section_path(section) %><br>
+      </td>
+      <td>
+        <% section.assignments.each do |assignment| %>
+          <%= assignment.name %><br>
+        <% end %>
+      </td>
+      <td></td>
+      <td><%= link_to 'edit', admin_sections_path(id: section.id) %></td>
+    </tr>
+  <% end %>
+
+</table>
