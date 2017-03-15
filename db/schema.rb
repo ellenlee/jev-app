@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312175033) do
+ActiveRecord::Schema.define(version: 20170315073354) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "section_id"
@@ -61,7 +61,10 @@ ActiveRecord::Schema.define(version: 20170312175033) do
     t.datetime "updated_at",                                 null: false
     t.string   "role",                   default: "student", null: false
     t.integer  "track_id"
+    t.string   "fb_uid"
+    t.string   "fb_token"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["fb_uid"], name: "index_users_on_fb_uid"
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
